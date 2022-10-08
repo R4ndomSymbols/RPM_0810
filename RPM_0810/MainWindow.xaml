@@ -1,0 +1,77 @@
+﻿<Window x:Class="RPM_0810.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RPM_0810"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <Window.DataContext>
+        <local:BasicVM/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Margin="20">
+            <Button.Content>
+                <Button Content="Кнопка в кнопке"/>
+            </Button.Content>
+        </Button>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <CheckBox Content="Неактивная кнопка" IsChecked="True" IsEnabled="False">
+                <CheckBox.ToolTip>
+                    <ToolTip HorizontalOffset="100">
+                        <TextBlock Text="Это вспомогательный текст 2"/>
+                    </ToolTip>
+                </CheckBox.ToolTip>
+            </CheckBox>
+
+            <CheckBox Content="Кнопка с двумя состояниями" Name="toggle_btn">
+                <CheckBox.ToolTip>
+                    <ToolTip Placement="Absolute" HorizontalOffset="100" >
+                        <TextBlock Text="Включает попап" FontSize="35"/>
+                    </ToolTip>
+                </CheckBox.ToolTip>
+            </CheckBox>
+            <CheckBox Content="Это кнопка с тремя состояниями" IsThreeState="True">
+            <CheckBox.ToolTip>
+                    <ToolTip HasDropShadow="True">
+                        <Image Source="E:\Separated_data\Изображения\Saved Pictures\iroduku-the-world-in-colors-yx.jpg" Width="100" Height="60"/>
+                    </ToolTip>
+                </CheckBox.ToolTip>
+            </CheckBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="2">
+            <RadioButton GroupName="One" Content="First" Command="{Binding BasicCommand}"/>
+            <RadioButton GroupName="One" Content="Second"/>
+            <RadioButton GroupName="One" Content="Three" Name="btn1"/>
+
+            <Popup PlacementTarget="{Binding ElementName=btn1}" Placement="Bottom" IsOpen="{Binding ElementName=toggle_btn, Path=IsChecked, Mode=TwoWay}">
+                <Border BorderThickness="1">
+                    <TextBlock Text="88005553535" Foreground="AliceBlue" Background="Red"/>
+                </Border>
+            </Popup>
+        </StackPanel>
+        
+        
+        
+        
+        
+        
+        
+
+    </Grid>
+</Window>
